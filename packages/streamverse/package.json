@@ -1,6 +1,6 @@
 {
   "name": "streamverse",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Zero-config real-time video calls and streaming. WebRTC made simple for developers.",
   "type": "module",
   "main": "dist/index.cjs",
