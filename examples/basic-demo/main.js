@@ -9,6 +9,8 @@ const publishBtn = document.getElementById('publishBtn');
 const leaveBtn = document.getElementById('leaveBtn');
 const statusDiv = document.getElementById('status');
 const videosContainer = document.getElementById('videos');
+const joinLoading = document.getElementById('joinLoading');
+const publishLoading = document.getElementById('publishLoading');
 
 // State
 let client = null;
@@ -19,6 +21,16 @@ let isPublishing = false;
 function updateStatus(message, type = 'info') {
     statusDiv.textContent = message;
     statusDiv.className = `status ${type}`;
+}
+
+function showLoading(button, loadingElement) {
+    button.disabled = true;
+    loadingElement.style.display = 'inline-block';
+}
+
+function hideLoading(button, loadingElement) {
+    button.disabled = false;
+    loadingElement.style.display = 'none';
 }
 
 function createVideoElement(userId, stream, isLocal = false) {
@@ -68,7 +80,7 @@ joinBtn.addEventListener('click', async () => {
 
     try {
         updateStatus('🔄 Connecting to room...', 'info');
-        joinBtn.disabled = true;
+        showLoading(joinBtn, joinLoading);
 
         // Create client (use local server for testing)
         client = createStreamShareClient({
@@ -101,8 +113,18 @@ joinBtn.addEventListener('click', async () => {
 
     } catch (error) {
         console.error('Failed to join room:', error);
-        updateStatus(`❌ Failed to join room: ${error.message}`, 'error');
-        joinBtn.disabled = false;
+
+        let errorMessage = 'Failed to join room';
+        if (error.message.includes('WebSocket')) {
+            errorMessage = '❌ Cannot connect to signaling server. Please ensure the local server is running (npm run server)';
+        } else if (error.message.includes('permission')) {
+            errorMessage = '❌ Permission denied. Please check your browser settings.';
+        } else {
+            errorMessage = `❌ ${error.message}`;
+        }
+
+        updateStatus(errorMessage, 'error');
+        hideLoading(joinBtn, joinLoading);
     }
 });
 
@@ -111,7 +133,7 @@ publishBtn.addEventListener('click', async () => {
 
     try {
         updateStatus('🔄 Starting stream...', 'info');
-        publishBtn.disabled = true;
+        showLoading(publishBtn, publishLoading);
 
         const streamType = streamTypeSelect.value;
         let stream;
@@ -149,6 +171,7 @@ publishBtn.addEventListener('click', async () => {
 
         publishBtn.textContent = 'Streaming...';
         streamTypeSelect.disabled = true;
+        hideLoading(publishBtn, publishLoading);
 
         // Handle stream end (for screen sharing)
         if (streamType === 'screen') {
@@ -164,14 +187,22 @@ publishBtn.addEventListener('click', async () => {
 
     } catch (error) {
         console.error('Failed to start streaming:', error);
-        updateStatus(`❌ Failed to start streaming: ${error.message}`, 'error');
-        publishBtn.disabled = false;
+        hideLoading(publishBtn, publishLoading);
 
+        let errorMessage = 'Failed to start streaming';
         if (error.name === 'NotAllowedError') {
-            updateStatus('❌ Camera/microphone access denied. Please allow access and try again.', 'error');
+            errorMessage = '❌ Camera/microphone access denied. Please allow access and try again.';
         } else if (error.name === 'NotFoundError') {
-            updateStatus('❌ No camera/microphone found. Please check your devices.', 'error');
+            errorMessage = '❌ No camera/microphone found. Please check your devices.';
+        } else if (error.name === 'NotSupportedError') {
+            errorMessage = '❌ Screen sharing not supported in this browser.';
+        } else if (error.message.includes('WebSocket')) {
+            errorMessage = '❌ Connection lost. Please try rejoining the room.';
+        } else {
+            errorMessage = `❌ ${error.message}`;
         }
+
+        updateStatus(errorMessage, 'error');
     }
 });
 
@@ -226,4 +257,40 @@ setTimeout(() => {
     if (!isJoined) {
         updateStatus('💡 Tip: Open this page in multiple browser tabs with different names to test multi-user video calls!', 'info');
     }
-}, 5000); 
+}, 5000);
+
+// Add keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey) {
+        switch (e.key) {
+            case 'Enter':
+                if (!isJoined && !joinBtn.disabled) {
+                    joinBtn.click();
+                } else if (isJoined && !isPublishing && !publishBtn.disabled) {
+                    publishBtn.click();
+                }
+                e.preventDefault();
+                break;
+            case 'Escape':
+                if (isJoined && !leaveBtn.disabled) {
+                    leaveBtn.click();
+                }
+                e.preventDefault();
+                break;
+        }
+    }
+});
+
+// Add helpful tooltips
+const tooltips = {
+    'joinBtn': 'Ctrl+Enter: Quick join',
+    'publishBtn': 'Ctrl+Enter: Quick start streaming',
+    'leaveBtn': 'Ctrl+Esc: Quick leave'
+};
+
+Object.entries(tooltips).forEach(([id, tooltip]) => {
+    const element = document.getElementById(id);
+    if (element) {
+        element.title = tooltip;
+    }
+}); 

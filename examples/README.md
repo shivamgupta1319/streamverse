@@ -1,185 +1,264 @@
-# StreamVerse Examples
+# 🎮 StreamVerse Examples & Demo
 
-This folder contains examples demonstrating how to use the StreamVerse package.
-
-## 📁 Available Examples
-
-### `basic-demo/`
-
-A complete, production-ready demo showcasing all StreamVerse features:
-
-- ✅ Multi-user video calls
-- ✅ Screen sharing
-- ✅ Audio-only streaming
-- ✅ Beautiful, responsive UI
-- ✅ Error handling and status updates
-
-### `signal-server/`
-
-A minimal WebSocket signaling server for development and testing. This server handles:
-
-- User subscription and session management
-- WebRTC signaling (offers, answers, ICE candidates)
-- Peer discovery and connection coordination
-- Session cleanup when users leave
-
-## 🚨 Important: Signaling Server Requirement
-
-**StreamVerse requires a signaling server for multi-user functionality.** The signaling server coordinates WebRTC connections between peers.
+This directory contains working examples and demos of StreamVerse in action. Perfect for testing, learning, and showcasing the package's capabilities.
 
 ## 🚀 Quick Start
 
-### For Multi-User Testing (Recommended)
+### 1. Start Local Development
 
-1. **Start the signaling server:**
+```bash
+# Start the signaling server (required for WebRTC)
+npm run server
 
-   ```bash
-   # Terminal 1 - from project root
-   npm run server
-   ```
+# In another terminal, start the demo
+npm run demo
+```
 
-2. **Start the demo:**
+### 2. Test Multi-User Functionality
 
-   ```bash
-   # Terminal 2 - from project root
-   npm run demo
-   ```
+1. Open `http://localhost:3000` in multiple browser tabs
+2. Use different names (Alice, Bob, Charlie, etc.)
+3. Join the same room name
+4. Start streaming and see each other!
 
-3. **Test multi-user:**
-   - Open `http://localhost:5173` in multiple tabs
-   - Use different names (Alice, Bob, etc.)
-   - Join the same room name
-   - Both should see each other's video!
+## 📁 Examples Overview
 
-The demo is configured to use the local signaling server (`ws://localhost:8787`) for multi-user testing.
+### `basic-demo/` - Complete Feature Demo
 
-## 🚨 Signaling Server Requirement
+- **Video calls** with HD quality
+- **Screen sharing** for presentations
+- **Audio-only** mode for voice calls
+- **Multi-user** support (test with multiple tabs)
+- **Responsive design** for all devices
+- **Beautiful UI** with modern design
 
-**Important:** StreamVerse requires a signaling server for multi-user functionality. The signaling server coordinates WebRTC connections between peers.
+### `signal-server/` - Local Signaling Server
 
-### Quick Setup Options:
+- **WebSocket-based** signaling for WebRTC
+- **Room management** for multiple sessions
+- **Peer coordination** for connection establishment
+- **Local development** and testing
 
-1. **Use the included signal server (recommended for development):**
+## 🎯 Demo Features
 
-   ```bash
-   npm run server  # Starts on ws://localhost:8787
-   ```
+### ✨ What You Can Test
 
-2. **Clone our standalone signal server:**
+1. **Join Rooms** - Create or join existing video rooms
+2. **Video Streaming** - Share your camera with others
+3. **Screen Sharing** - Present your screen in real-time
+4. **Audio Streaming** - Voice-only communication
+5. **Multi-User** - See multiple participants simultaneously
+6. **Responsive UI** - Works on desktop, tablet, and mobile
 
-   ```bash
-   git clone https://github.com/shivamgupta1319/streamverse.git
-   cd signal-server
-   npm install
-   npm start
-   ```
+### 🎮 Interactive Elements
 
-3. **Use the hosted service (for production):**
-   ```typescript
-   // Default configuration uses hosted service
-   const client = createStreamShareClient({ userId: "alice" });
-   ```
+- **Real-time status updates** with beautiful animations
+- **Loading states** for better user experience
+- **Error handling** with helpful messages
+- **Keyboard shortcuts** (Ctrl+Enter, Ctrl+Esc)
+- **Feature highlights** showcasing capabilities
 
-### For Single-User Testing
+## 🌐 Deployment Options
 
-1. **Start demo only:**
+### Option 1: Vercel (Recommended)
 
-   ```bash
-   npm run demo
-   ```
+```bash
+# Deploy with one command
+npm run deploy:demo
 
-2. **Note:** Without a signaling server, you'll only see your own video (no remote streams)
+# Or manually
+cd examples/basic-demo
+npm run deploy
+```
 
-## 🎯 What You'll Learn
+### Option 2: Netlify
 
-The basic demo shows you how to:
+```bash
+npm run deploy:demo:netlify
+```
 
-- Create a StreamVerse client with zero configuration
-- Join/create rooms
-- Handle different stream types (camera, screen, audio)
-- Manage remote streams from other users
-- Handle errors and connection states
-- Build a complete video calling interface
+### Option 3: GitHub Pages
 
-## 💡 Usage in Your App
+```bash
+cd examples/basic-demo
+npm run build
+# Then push dist/ folder to GitHub Pages
+```
 
-The demo code shows the complete StreamVerse API:
+## 🔧 Configuration
+
+### Environment Variables
+
+Create `.env` file in `examples/basic-demo/`:
+
+```env
+# For production signaling server
+VITE_SIGNALING_URL=wss://your-signaling-server.com
+
+# For local development (default)
+VITE_SIGNALING_URL=ws://localhost:8787
+```
+
+### Custom Signaling Server
+
+Update `examples/basic-demo/main.js`:
 
 ```javascript
-import { createStreamShareClient } from "streamverse";
+const signalingUrl =
+  import.meta.env.VITE_SIGNALING_URL || "ws://localhost:8787";
 
-// Create client (uses hosted service by default)
-const client = createStreamShareClient({ userId: "your-user-id" });
-
-// Join a room
-await client.subscribe("your-user-id");
-await client.startSession("room-name");
-
-// Start streaming
-const stream = await navigator.mediaDevices.getUserMedia({
-  video: true,
-  audio: true,
-});
-await client.publishStream(stream, "camera");
-
-// Handle remote streams
-client.onRemoteStream(({ userId, stream }) => {
-  // Display remote user's video/audio
+client = createStreamShareClient({
+  userId,
+  signalingUrl,
 });
 ```
 
-## 🔧 Local Development Setup
+## 🚨 Important Notes
 
-If you want to run your own signaling server for development:
+### Signaling Server Requirement
 
-1. **Option A: Use the included server:**
+- **WebRTC requires a signaling server** to establish connections
+- **Local development**: Use `npm run server` for testing
+- **Production**: Deploy your own server or use hosted service
 
-   ```bash
-   cd examples/signal-server
-   npm install
-   npm start
-   # Server runs on ws://localhost:8787
-   ```
+### Browser Compatibility
 
-2. **Option B: Clone standalone server:**
+- **Modern browsers** with WebRTC support
+- **HTTPS required** for camera/microphone access
+- **Chrome, Firefox, Safari, Edge** supported
 
-   ```bash
-   git clone https://github.com/shivamgupta1319/streamverse.git
-   cd signal-server
-   npm install
-   npm start
-   ```
+### Media Permissions
 
-3. **Configure your client to use local server:**
-   ```javascript
-   const client = createStreamShareClient({
-     userId: "alice",
-     signalingUrl: "ws://localhost:8787",
-   });
-   ```
+- **Camera access** required for video streaming
+- **Microphone access** required for audio
+- **Screen sharing** requires user interaction
 
-## 🚀 Production Deployment
+## 🧪 Testing Checklist
 
-For production apps:
+### Local Testing
 
-1. **Use hosted service (easiest):**
+- [ ] Signaling server running (`npm run server`)
+- [ ] Demo accessible at `http://localhost:3000`
+- [ ] Camera/microphone permissions granted
+- [ ] Can join rooms and start streaming
+- [ ] Multiple tabs can connect to same room
 
-   ```javascript
-   // Uses StreamVerse hosted signaling service
-   const client = createStreamShareClient({ userId: "alice" });
-   ```
+### Production Testing
 
-2. **Deploy your own signaling server:**
-   - Deploy the signal server to your cloud provider
-   - Configure your client with your server URL
-   - Ensure HTTPS/WSS for production
+- [ ] Demo deployed and accessible
+- [ ] Signaling server deployed and accessible
+- [ ] HTTPS enabled for media access
+- [ ] Cross-browser compatibility verified
+- [ ] Mobile responsiveness tested
 
-## 🔧 Customization
+## 🐛 Troubleshooting
 
-The basic demo is designed to be:
+### Common Issues
 
-- **Easily customizable** - Modify the UI to match your brand
-- **Production-ready** - Includes proper error handling and state management
-- **Educational** - Well-commented code showing best practices
+1. **"Cannot connect to signaling server"**
 
-Feel free to copy and modify the demo code for your own projects!
+   - Ensure `npm run server` is running
+   - Check port 8787 is not blocked
+   - Verify WebSocket URL format
+
+2. **"Camera/microphone access denied"**
+
+   - Use HTTPS in production
+   - Check browser permissions
+   - Ensure user interaction before media access
+
+3. **"Screen sharing not supported"**
+   - Use modern browsers
+   - Check browser permissions
+   - Ensure user interaction
+
+### Debug Mode
+
+Enable console logging in `examples/basic-demo/main.js`:
+
+```javascript
+// Add this for detailed logging
+console.log("StreamVerse client created:", client);
+console.log("Joining room:", roomId);
+```
+
+## 📱 Mobile Testing
+
+### Responsive Design
+
+- **Mobile-first** approach
+- **Touch-friendly** controls
+- **Adaptive layouts** for all screen sizes
+- **Performance optimized** for mobile devices
+
+### Mobile Considerations
+
+- **Battery usage** optimization
+- **Data usage** management
+- **Touch gestures** support
+- **Orientation changes** handled
+
+## 🔄 Continuous Integration
+
+### GitHub Actions
+
+Automate deployment with `.github/workflows/deploy-demo.yml`:
+
+```yaml
+name: Deploy Demo
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - run: npm ci
+      - run: npm run deploy:demo
+```
+
+## 📊 Analytics & Monitoring
+
+### Built-in Monitoring
+
+- **Performance metrics** tracking
+- **Error reporting** and logging
+- **User interaction** analytics
+- **Connection quality** monitoring
+
+### Custom Analytics
+
+Add Google Analytics or other tracking services for user insights.
+
+## 🎉 Success Metrics
+
+### Demo Goals
+
+- **User engagement** with interactive features
+- **Feature discovery** through guided testing
+- **Package adoption** after positive experience
+- **Community feedback** and improvement suggestions
+
+### Key Performance Indicators
+
+- **Page load time** < 3 seconds
+- **Connection establishment** < 5 seconds
+- **Stream quality** HD (720p+) maintained
+- **User satisfaction** through feedback collection
+
+## 🔗 Related Resources
+
+- **[Main Package](../packages/streamverse/README.md)** - Complete API documentation
+- **[Deployment Guide](../DEPLOYMENT.md)** - Comprehensive deployment instructions
+- **[Signal Server Setup](../SIGNALING_SERVER_SETUP.md)** - Signaling server configuration
+- **[GitHub Repository](https://github.com/shivamgupta1319/streamverse)** - Source code and issues
+
+---
+
+**Ready to showcase StreamVerse? 🚀**
+
+Deploy your demo and let users experience the power of zero-config WebRTC before they install your package!

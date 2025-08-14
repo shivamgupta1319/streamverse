@@ -1,27 +1,7 @@
 import { WebSocketServer } from 'ws';
-import { createServer } from 'http';
 
-const port = process.env.PORT || 8787;
-const server = createServer();
-
-// Health check endpoint
-server.on('request', (req, res) => {
-    if (req.url === '/health') {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({
-            status: 'healthy',
-            connections: clients.size,
-            sessions: sessions.size,
-            timestamp: new Date().toISOString()
-        }));
-    } else {
-        res.writeHead(404);
-        res.end('Not Found');
-    }
-});
-
-const wss = new WebSocketServer({ server });
-
+// WebSocket server for production deployment
+let wss = null;
 const clients = new Map(); // userId -> { ws, sessionId }
 const sessions = new Map(); // sessionId -> Set<userId>
 
@@ -42,7 +22,7 @@ function broadcastToSession(sessionId, data, excludeUserId) {
     }
 }
 
-wss.on('connection', (ws) => {
+function handleWebSocket(ws) {
     let currentClient = null;
 
     ws.on('message', (raw) => {
@@ -134,27 +114,29 @@ wss.on('connection', (ws) => {
             console.log(`User ${currentClient.userId} disconnected`);
         }
     });
-});
+}
 
-server.listen(port, () => {
-    console.log(`🚀 StreamVerse signaling server running on port ${port}`);
-    console.log(`🌐 Health check available at /health`);
-    console.log(`📊 Current connections: ${clients.size}, Sessions: ${sessions.size}`);
-});
-
-// Graceful shutdown
-process.on('SIGTERM', () => {
-    console.log('🔄 Shutting down gracefully...');
-    server.close(() => {
-        console.log('✅ Server closed');
-        process.exit(0);
-    });
-});
-
-process.on('SIGINT', () => {
-    console.log('🔄 Shutting down gracefully...');
-    server.close(() => {
-        console.log('✅ Server closed');
-        process.exit(0);
-    });
-}); 
+// Vercel serverless function handler
+export default function handler(req, res) {
+    if (req.method === 'GET') {
+        // Handle WebSocket upgrade
+        if (req.headers.upgrade === 'websocket') {
+            // This would need to be handled differently in Vercel
+            // For now, we'll provide instructions
+            res.status(200).json({
+                message: 'WebSocket connections are not supported in this serverless environment',
+                instructions: 'Please use the local signaling server for development or deploy to a platform that supports WebSocket servers'
+            });
+        } else {
+            res.status(200).json({
+                message: 'StreamVerse Signaling Server',
+                status: 'running',
+                connections: clients.size,
+                sessions: sessions.size
+            });
+        }
+    } else {
+        res.setHeader('Allow', ['GET']);
+        res.status(405).end(`Method ${req.method} Not Allowed`);
+    }
+} 

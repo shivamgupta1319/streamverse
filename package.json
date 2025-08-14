@@ -9,13 +9,19 @@
     "build": "npm run -w streamverse build",
     "test": "npm run -w streamverse test",
     "demo": "cd examples/basic-demo && npm run dev",
-    "server": "cd examples/signal-server && npm install && npm start"
+    "server": "cd examples/signal-server && npm install && npm start",
+    "deploy:demo": "cd examples/basic-demo && ./deploy.sh",
+    "deploy:demo:vercel": "cd examples/basic-demo && npm run deploy:vercel",
+    "deploy:demo:netlify": "cd examples/basic-demo && npm run build && npx netlify deploy --prod --dir=dist",
+    "deploy:signal:render": "cd examples/signal-server && ./deploy-render.sh",
+    "deploy:signal:railway": "cd examples/signal-server && ./deploy-railway.sh"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
     "tsup": "^8.0.2",
     "typescript": "^5.5.4",
-    "vitest": "^1.6.0"
+    "vitest": "^1.6.0",
+    "vercel": "^45.0.9"
   },
   "engines": {
     "node": ">=18"
