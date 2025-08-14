@@ -1,0 +1,23 @@
+{
+  "name": "streamshare-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/basic-demo"
+  ],
+  "scripts": {
+    "build": "npm run -w streamverse build",
+    "test": "npm run -w streamverse test",
+    "demo": "cd examples/basic-demo && npm run dev",
+    "server": "cd examples/signal-server && npm install && npm start"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "tsup": "^8.0.2",
+    "typescript": "^5.5.4",
+    "vitest": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

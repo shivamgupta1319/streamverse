@@ -1,0 +1,62 @@
+{
+  "name": "streamverse",
+  "version": "1.0.0",
+  "description": "Zero-config real-time video calls and streaming. WebRTC made simple for developers.",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "mediasoup-client": "^3.7.16"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "vitest": "^1.6.1"
+  },
+  "keywords": [
+    "webrtc",
+    "video-call",
+    "voice-call",
+    "streaming",
+    "screen-sharing",
+    "live-streaming",
+    "broadcast",
+    "conferencing",
+    "peer-to-peer",
+    "real-time",
+    "zero-config",
+    "video-chat"
+  ],
+  "author": "StreamVerse Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/streamverse/streamverse.git"
+  },
+  "homepage": "https://streamverse.dev",
+  "bugs": {
+    "url": "https://github.com/streamverse/streamverse/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
