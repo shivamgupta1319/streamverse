@@ -2,6 +2,17 @@
 
 This directory contains working examples and demos of StreamVerse in action. Perfect for testing, learning, and showcasing the package's capabilities.
 
+## 🌐 **Live Demo - Try It Now!**
+
+**Experience StreamVerse in action:** [**Live Demo**](https://streamverse-r39103o0y-shivam-guptas-projects-b7b5484e.vercel.app)
+
+- ✅ **Multi-user video calls** - Test with multiple browser tabs
+- ✅ **Screen sharing** - Real-time screen presentation
+- ✅ **Audio streaming** - Voice-only communication
+- ✅ **Zero setup** - Just open and start testing!
+
+> **💡 Pro Tip:** Open the demo in multiple browser tabs with different names to test multi-user functionality!
+
 ## 🚀 Quick Start
 
 ### 1. Start Local Development

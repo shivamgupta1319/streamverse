@@ -2,6 +2,11 @@
 
 🚀 **TypeScript SDK for effortless WebRTC-based real-time communication**
 
+[![NPM Version](https://img.shields.io/npm/v/streamverse.svg)](https://www.npmjs.com/package/streamverse)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Try%20Now-green.svg)](https://streamverse-r39103o0y-shivam-guptas-projects-b7b5484e.vercel.app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+
 StreamVerse makes building video calls, voice calls, live streaming, and screen sharing as simple as a few lines of code. **For multi-user functionality, a signaling server is required** — we provide both a hosted service and a local setup option.
 
 ## 🌟 What is StreamVerse?
@@ -25,6 +30,17 @@ npm install streamverse
 ```
 
 ## 🚀 Quick Start
+
+### 🌐 **Live Demo - Try Before You Install!**
+
+**Experience StreamVerse in action:** [**Live Demo**](https://streamverse-r39103o0y-shivam-guptas-projects-b7b5484e.vercel.app)
+
+- ✅ **Multi-user video calls** - Test with multiple browser tabs
+- ✅ **Screen sharing** - Real-time screen presentation
+- ✅ **Audio streaming** - Voice-only communication
+- ✅ **Zero setup** - Just open and start testing!
+
+> **💡 Pro Tip:** Open the demo in multiple browser tabs with different names to test multi-user functionality!
 
 ```typescript
 import { createStreamShareClient } from "streamverse";
