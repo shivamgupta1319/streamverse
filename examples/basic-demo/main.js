@@ -1,4 +1,5 @@
 import { createStreamShareClient } from 'streamverse';
+import { config } from './config.js';
 
 // DOM elements
 const userIdInput = document.getElementById('userId');
@@ -82,10 +83,10 @@ joinBtn.addEventListener('click', async () => {
         updateStatus('🔄 Connecting to room...', 'info');
         showLoading(joinBtn, joinLoading);
 
-        // Create client (use local server for testing)
+        // Create client (use deployed Render signaling server)
         client = createStreamShareClient({
             userId,
-            signalingUrl: 'ws://localhost:8787'
+            signalingUrl: config.signalingUrl
         });
 
         // Set up remote stream handler
@@ -116,7 +117,7 @@ joinBtn.addEventListener('click', async () => {
 
         let errorMessage = 'Failed to join room';
         if (error.message.includes('WebSocket')) {
-            errorMessage = '❌ Cannot connect to signaling server. Please ensure the local server is running (npm run server)';
+            errorMessage = '❌ Cannot connect to signaling server. Please check if the server is running.';
         } else if (error.message.includes('permission')) {
             errorMessage = '❌ Permission denied. Please check your browser settings.';
         } else {

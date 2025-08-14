@@ -11,10 +11,7 @@
     "demo": "cd examples/basic-demo && npm run dev",
     "server": "cd examples/signal-server && npm install && npm start",
     "deploy:demo": "cd examples/basic-demo && ./deploy.sh",
-    "deploy:demo:vercel": "cd examples/basic-demo && npm run deploy:vercel",
-    "deploy:demo:netlify": "cd examples/basic-demo && npm run build && npx netlify deploy --prod --dir=dist",
-    "deploy:signal:render": "cd examples/signal-server && ./deploy-render.sh",
-    "deploy:signal:railway": "cd examples/signal-server && ./deploy-railway.sh"
+    "deploy:signal:render": "cd examples/signal-server && ./deploy-render.sh"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
