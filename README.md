@@ -113,7 +113,7 @@ For development or custom deployments:
 
 ```bash
 # Clone our signal server
-git clone https://github.com/streamverse/signal-server.git
+git clone https://github.com/shivamgupta1319/streamverse.git
 cd signal-server
 npm install
 npm start
@@ -233,7 +233,7 @@ For production control:
 1. **Deploy the signal server:**
 
    ```bash
-   git clone https://github.com/streamverse/signal-server.git
+   git clone https://github.com/shivamgupta1319/streamverse.git
    cd signal-server
    npm install
    # Deploy to your cloud provider (AWS, GCP, Azure, etc.)
@@ -272,11 +272,11 @@ MIT License - see [LICENSE](packages/streamverse/LICENSE) for details.
 ## 🔗 Links
 
 - 📦 [NPM Package](https://www.npmjs.com/package/streamverse)
-- 🐙 [GitHub Repository](https://github.com/streamverse/streamverse)
+- 🐙 [GitHub Repository](https://github.com/shivamgupta1319/streamverse)
 - 🌐 [Documentation](https://streamverse.dev)
-- 🚀 [Signal Server](https://github.com/streamverse/signal-server)
+- 🚀 [Signal Server](https://github.com/shivamgupta1319/streamverse)
 - 💬 [Community Discord](https://discord.gg/streamverse)
-- 🐛 [Issue Tracker](https://github.com/streamverse/streamverse/issues)
+- 🐛 [Issue Tracker](https://github.com/shivamgupta1319/streamverse/issues)
 
 ---
 

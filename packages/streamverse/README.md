@@ -274,16 +274,12 @@ const client = createStreamShareClient({
 For local development with multi-user testing:
 
 ```bash
-# Option 1: Use our standalone signal server
-git clone https://github.com/streamverse/signal-server.git
-cd signal-server
-npm install
-npm start
-
-# Option 2: Use the example from this repo
+# Use our example signal server
+git clone https://github.com/shivamgupta1319/streamverse.git
 cd examples/signal-server
 npm install
 npm start
+
 ```
 
 Then configure your client:
@@ -488,7 +484,7 @@ client.onStats((stats) => {
 
 - 📖 [Documentation](https://streamverse.dev)
 - 💬 [Discord Community](https://discord.gg/streamverse)
-- 🐛 [Issue Tracker](https://github.com/streamverse/streamverse/issues)
+- 🐛 [Issue Tracker](https://github.com/shivamgupta1319/streamverse/issues)
 - 📧 [Email Support](mailto:support@streamverse.dev)
 
 ## 📄 License
@@ -497,7 +493,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🎉 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](https://github.com/streamverse/streamverse/blob/main/CONTRIBUTING.md) for details.
+We welcome contributions! Please see our [Contributing Guide](https://github.com/shivamgupta1319/streamverse/blob/main/CONTRIBUTING.md) for details.
 
 ---
 

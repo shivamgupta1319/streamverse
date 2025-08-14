@@ -44,9 +44,9 @@
 
 - [x] **Keywords**: Optimized for NPM discovery
   - `webrtc`, `video-call`, `voice-call`, `streaming`, `screen-sharing`, `live-streaming`, `broadcast`, `conferencing`, `peer-to-peer`, `real-time`, `zero-config`, `video-chat`
-- [x] **Repository**: `https://github.com/streamverse/streamverse.git`
+- [x] **Repository**: `https://github.com/shivamgupta1319/streamverse.git`
 - [x] **Homepage**: `https://streamverse.dev`
-- [x] **Bug Reports**: `https://github.com/streamverse/streamverse/issues`
+- [x] **Bug Reports**: `https://github.com/shivamgupta1319/streamverse/issues`
 - [x] **License**: MIT
 - [x] **Author**: StreamVerse Team
 

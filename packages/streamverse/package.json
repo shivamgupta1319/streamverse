@@ -50,11 +50,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/streamverse/streamverse.git"
+    "url": "https://github.com/shivamgupta1319/streamverse.git"
   },
-  "homepage": "https://streamverse.dev",
+  "homepage": "https://github.com/shivamgupta1319/streamverse",
   "bugs": {
-    "url": "https://github.com/streamverse/streamverse/issues"
+    "url": "https://github.com/shivamgupta1319/streamverse/issues"
   },
   "engines": {
     "node": ">=18"

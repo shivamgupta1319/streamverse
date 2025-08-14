@@ -166,7 +166,7 @@ await client.publishStream(stream);
 
 ## 🔗 Next Steps After Publishing
 
-1. **Create GitHub Repository**: `https://github.com/streamverse/streamverse`
+1. **Create GitHub Repository**: `https://github.com/shivamgupta1319/streamverse`
 2. **Set up Documentation Site**: `https://streamverse.dev`
 3. **Deploy Hosted Signaling Service**: For zero-config experience
 4. **Add CI/CD**: Automate testing and publishing

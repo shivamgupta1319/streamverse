@@ -71,7 +71,7 @@ For more advanced development or custom deployments:
 
 ```bash
 # Clone the standalone server
-git clone https://github.com/streamverse/signal-server.git
+git clone https://github.com/shivamgupta1319/streamverse.git
 cd signal-server
 npm install
 npm start
@@ -128,7 +128,7 @@ For production control, deploy your own signaling server:
 
    ```bash
    # Clone and prepare
-   git clone https://github.com/streamverse/signal-server.git
+   git clone https://github.com/shivamgupta1319/streamverse.git
    cd signal-server
    npm install
 
@@ -247,7 +247,7 @@ The signaling server handles these WebSocket messages:
 - **🎮 [Demo Source Code](./examples/basic-demo/)**
 - **🔧 [Signal Server Source](./examples/signal-server/)**
 - **💬 [Community Support](https://discord.gg/streamverse)**
-- **🐛 [Report Issues](https://github.com/streamverse/streamverse/issues)**
+- **🐛 [Report Issues](https://github.com/shivamgupta1319/streamverse/issues)**
 
 ---
 

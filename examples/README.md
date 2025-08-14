@@ -68,7 +68,7 @@ The demo is configured to use the local signaling server (`ws://localhost:8787`)
 2. **Clone our standalone signal server:**
 
    ```bash
-   git clone https://github.com/streamverse/signal-server.git
+   git clone https://github.com/shivamgupta1319/streamverse.git
    cd signal-server
    npm install
    npm start
@@ -144,7 +144,7 @@ If you want to run your own signaling server for development:
 2. **Option B: Clone standalone server:**
 
    ```bash
-   git clone https://github.com/streamverse/signal-server.git
+   git clone https://github.com/shivamgupta1319/streamverse.git
    cd signal-server
    npm install
    npm start
