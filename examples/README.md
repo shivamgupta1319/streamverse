@@ -4,7 +4,7 @@ This directory contains working examples and demos of StreamVerse in action. Per
 
 ## 🌐 **Live Demo - Try It Now!**
 
-**Experience StreamVerse in action:** [**Live Demo**](https://streamverse-r39103o0y-shivam-guptas-projects-b7b5484e.vercel.app)
+**Experience StreamVerse in action:** [**Live Demo**](https://streamverse-delta.vercel.app)
 
 - ✅ **Multi-user video calls** - Test with multiple browser tabs
 - ✅ **Screen sharing** - Real-time screen presentation

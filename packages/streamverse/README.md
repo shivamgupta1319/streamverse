@@ -5,7 +5,7 @@
 StreamVerse is a TypeScript SDK that makes real-time communication effortless. Build video calls, voice calls, live shows, and screen sharing with **zero server setup** for single-user testing, or use our hosted signaling service for multi-user functionality!
 
 [![NPM Version](https://img.shields.io/npm/v/streamverse.svg)](https://www.npmjs.com/package/streamverse)
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Try%20Now-green.svg)](https://streamverse-r39103o0y-shivam-guptas-projects-b7b5484e.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Try%20Now-green.svg)](https://streamverse-delta.vercel.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
@@ -30,7 +30,7 @@ npm install streamverse
 
 ### 🌐 **Live Demo - Try Before You Install!**
 
-**Experience StreamVerse in action:** [**Live Demo**](https://streamverse-r39103o0y-shivam-guptas-projects-b7b5484e.vercel.app)
+**Experience StreamVerse in action:** [**Live Demo**](https://streamverse-delta.vercel.app)
 
 - ✅ **Multi-user video calls** - Test with multiple browser tabs
 - ✅ **Screen sharing** - Real-time screen presentation
